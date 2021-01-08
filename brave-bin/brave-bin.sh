@@ -13,4 +13,4 @@ fi
 #     SANDBOX_FLAG="--no-sandbox"
 # fi
 
-exec /usr/lib/brave-bin/brave "$@" $SANDBOX_FLAG $PEPPER_FLASH_FLAG $USER_FLAGS
+exec /usr/lib/brave-bin/brave-browser "$@" $SANDBOX_FLAG $PEPPER_FLASH_FLAG $USER_FLAGS

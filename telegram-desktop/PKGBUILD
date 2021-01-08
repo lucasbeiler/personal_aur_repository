@@ -1,0 +1,52 @@
+# Maintainer (of this fork): Lucas S. Beiler <lucasbeiler@protonmail.com>
+
+# Forked from the official package from Arch Linux.
+
+# This fork of the PKGBUILD is different from the original because I want to compile Telegram without D-BUS support,
+# since I don't use any feature of Telegram that requires DBus.
+# I've created my own sandbox for Telegram using bubblewrap, seccomp and AppArmor
+# and DBus can be used as a way to escape sandboxes in certain cases, as mentioned by the Firejail project: https://github.com/netblue30/firejail/issues/796)
+
+# Maintainer: Sven-Hendrik Haase <svenstaro@gmail.com>
+# Contributor: hexchain <i@hexchain.org>
+pkgname=telegram-desktop
+pkgver=2.5.1
+pkgrel=1
+pkgdesc='Official Telegram Desktop client'
+arch=('x86_64')
+url="https://desktop.telegram.org/"
+license=('GPL3')
+depends=('hunspell' 'ffmpeg' 'hicolor-icon-theme' 'lz4' 'minizip' 'openal' 'ttf-opensans'
+         'qt5-imageformats' 'xxhash' 'libdbusmenu-qt5' 'qt5-wayland' 'gtk3')
+makedepends=('cmake' 'git' 'ninja' 'python' 'range-v3' 'tl-expected' 'microsoft-gsl' 'libtg_owt')
+source=("https://github.com/telegramdesktop/tdesktop/releases/download/v${pkgver}/tdesktop-${pkgver}-full.tar.gz")
+sha512sums=('c906c76e44f5c6926bdc00143cbb1ac718633395a390c8a3e40fde9c4bfa42ba2e92cf0ac4c20434168d0548981f2fddefd019b942411ff4552a0f441336c0e1')
+
+prepare() {
+    cd tdesktop-$pkgver-full/cmake
+    # force webrtc link to libjpeg
+    echo "target_link_libraries(external_webrtc INTERFACE jpeg)" | tee -a external/webrtc/CMakeLists.txt
+}
+
+build() {
+    cd tdesktop-$pkgver-full
+
+    # Turns out we're allowed to use the official API key that telegram uses for their snap builds:
+    # https://github.com/telegramdesktop/tdesktop/blob/8fab9167beb2407c1153930ed03a4badd0c2b59f/snap/snapcraft.yaml#L87-L88
+    # Thanks @primeos!
+    cmake . \
+        -B build \
+        -G Ninja \
+        -DCMAKE_INSTALL_PREFIX="/usr" \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DTDESKTOP_API_ID=611335 \
+        -DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c \
+        -DTDESKTOP_LAUNCHER_BASENAME="telegramdesktop" \
+        -DDESKTOP_APP_SPECIAL_TARGET=""
+    ninja -C build
+}
+
+package() {
+    cd tdesktop-$pkgver-full
+    DESTDIR=$pkgdir ninja -C build install
+}

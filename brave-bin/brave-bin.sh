@@ -13,4 +13,6 @@ fi
 #     SANDBOX_FLAG="--no-sandbox"
 # fi
 
-exec /usr/lib/brave-bin/brave-browser "$@" $SANDBOX_FLAG $PEPPER_FLASH_FLAG $USER_FLAGS
+export CHROME_VERSION_EXTRA="stable"
+
+exec /usr/lib/brave-bin/brave-browser "$@" $USER_FLAGS

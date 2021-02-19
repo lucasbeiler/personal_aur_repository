@@ -10,7 +10,7 @@
 # Maintainer: Sven-Hendrik Haase <svenstaro@gmail.com>
 # Contributor: hexchain <i@hexchain.org>
 pkgname=telegram-desktop
-pkgver=2.5.7
+pkgver=2.5.9
 pkgrel=1
 pkgdesc='Official Telegram Desktop client'
 arch=('x86_64')
@@ -20,7 +20,7 @@ depends=('hunspell' 'ffmpeg' 'hicolor-icon-theme' 'lz4' 'minizip' 'openal' 'ttf-
          'qt5-imageformats' 'xxhash' 'libdbusmenu-qt5' 'kwayland' 'gtk3')
 makedepends=('cmake' 'git' 'ninja' 'python' 'range-v3' 'tl-expected' 'microsoft-gsl' 'libtg_owt')
 source=("https://github.com/telegramdesktop/tdesktop/releases/download/v${pkgver}/tdesktop-${pkgver}-full.tar.gz")
-sha512sums=('bb57ea735f80d8cd97d550e8e1f41dc0c1db20d8d11f1f64ee78f9c35a1453c47e89a694e9df34bc0149ae283d6566ab5589507a3f9dcbcc5c0b683247d10794')
+sha512sums=('1824a5cc17644e2f3d971a6bf882f90f209fcb174826f6e59dbe73301e22b4983e77830c41fe27953049af116a5698a29bec1e5e9957e8905f8f6264722e1c9f')
 
 prepare() {
     cd tdesktop-$pkgver-full/cmake

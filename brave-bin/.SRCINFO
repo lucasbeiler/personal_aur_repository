@@ -1,6 +1,6 @@
 pkgbase = brave-bin
 	pkgdesc = Web browser that blocks ads and trackers by default (binary release).
-	pkgver = 1.19.92
+	pkgver = 1.20.108
 	pkgrel = 1
 	epoch = 1
 	url = https://brave.com/download
@@ -19,11 +19,11 @@ pkgbase = brave-bin
 	provides = brave
 	provides = brave-browser
 	conflicts = brave
-	noextract = brave-bin-1.19.92.zip
+	noextract = brave-bin-1.20.108.zip
 	options = !strip
-	source = brave-bin-1.19.92.zip::https://github.com/brave/brave-browser/releases/download/v1.19.92/brave-browser-1.19.92-linux-amd64.zip
+	source = brave-bin-1.20.108.zip::https://github.com/brave/brave-browser/releases/download/v1.20.108/brave-browser-1.20.108-linux-amd64.zip
 	source = brave-bin.sh
-	sha512sums = 88ce12722f9bedda78c0d262f458714df1ffe3a82d11dd51931c39a82814741ec52e2ba51ad892644d79f265480a61c760cb71f611d1a3edce0a65bc92b20fbb
+	sha512sums = 6484a49e24ff814f35c42a9947b1b3ee9c872e5a2eba1dd38973249c75b5fbe2329fcef4e128b3effb8a4f9e7a1c82632a0858b8094159bf601f37edc769dc2e
 	sha512sums = d55753af6b302e807460d166a30c8cce3d6f10510a66eb783f28c5d7c40cd08d5d27af76b80dd0e57d9b3bfc9e79ca32936511df6cb68a2204304a56dfb97c77
 
 pkgname = brave-bin
